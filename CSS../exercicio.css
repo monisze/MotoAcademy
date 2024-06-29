@@ -1,0 +1,16 @@
+.paragrafo-titulo {
+    color: red;
+    font-family: 'Arial', sans-serif;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+.paragrafo-dois {
+    color: blue;
+    font-size: 50px;
+    text-transform: uppercase;
+}
+    
+.paragrafo {
+    border: 1px solid green;
+}
