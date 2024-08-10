@@ -3,7 +3,7 @@ const express = require('express')
 const app = express ();
 app.use(express.json())
 
-const users = [
+let users = [
     {id: 1, name: "Monise"},
     {id: 2, name: "Arthur"},
 ]
@@ -21,7 +21,24 @@ app.post('/usuarios', (req, res) => {
     res.status(201).json(newUser);
 })
 
-//http://localhost:3000/usuarios/
+app.put ("/usuarios/:id" , (req,res) => {
+     const id = parseInt(req.params.id)
+     const { name } = req.body
+     const userIndex = users.findIndex(user => user.id == id);
+     if(userIndex != -1) {
+        users[userIndex].name = name;
+        res.json(users[userIndex])
+     }else {
+    res.status(400).json({message: 'Usuário não encontrado'})
+     }
+})
+
+app.delete('/usuarios/:id', (req,res) => {
+    const id = parseInt(req.params.id);
+    users = users.filter(user => user.id !== id);
+    res.sendStatus(204)
+})
+
 
 app.get('/',(req,res) => {
     res.send ({message: "Olá mundo"})
